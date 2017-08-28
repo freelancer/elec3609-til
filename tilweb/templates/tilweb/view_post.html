@@ -1,0 +1,11 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<div class="container" style="width:40%">
+    <h3>{{post.subject}}</h3> 
+    <p> {{post.content}} </p>
+</div>
