@@ -101,4 +101,5 @@ ENV/
 # mkdocs documentation
 /site
 
+db.sqlite3
 # End of https://www.gitignore.io/api/python

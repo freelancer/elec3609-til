@@ -7,7 +7,25 @@ Download the source code by using git:
 git clone https://github.com/amitsaha/til.git
 ```
 
-https://django-bootstrap3.readthedocs.io/en/latest/quickstart.html#example-template
+## Model Setup
 
-https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html
-https://stackoverflow.com/questions/14647723/django-forms-if-not-valid-show-form-with-error-message
+```
+$ pip install -r requirements.txt
+$ python manage.py migrate
+```
+
+## Start web application
+
+```
+$ python manage.py runserver 0.0.0.0:8000
+```
+
+Go to `127.0.0.1:8000`
+
+### Resources
+
+I used these for help:
+
+- https://django-bootstrap3.readthedocs.io/en/latest/quickstart.html#example-template
+- https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html
+- https://stackoverflow.com/questions/14647723/django-forms-if-not-valid-show-form-with-error-message
