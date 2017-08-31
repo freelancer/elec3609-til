@@ -9,4 +9,4 @@ class TilForm(forms.Form):
     tags = forms.CharField(label='Tags (comma separated, maximum: 4)',
                            required=False,
                            max_length=43)
-    visibility = forms.BooleanField(label='Public', required=False)
+    public = forms.BooleanField(label='Public', required=False)

@@ -7,20 +7,13 @@
 
 <div class="container"
   <div class="jumbotron">
-      <h1>Hello, {{user.username}}</h1> 
+      <h1>Posts tagged {{ tag }}</h1> 
     <p>TIL: Your personal learning journal</p>
     </div>
 </div>
 
 <div class="container" style="width:40%">
-<p><a href="/post/">Create a new post</a></p>
-<h3>Your posts</h3> 
 {% for post in posts %}
 <p><a href="/post/{{post.id}}/">{{ post.subject }}</a></p>
-{%endfor %}
-
-<h3>Tags you have used</h3> 
-{% for tag in tags %}
-<p><a href="/tag/{{tag.tag}}/">{{ tag.tag }}</a></p>
 {%endfor %}
 

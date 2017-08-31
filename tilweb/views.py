@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import (
     HttpResponseNotAllowed, HttpResponseRedirect,
-    HttpResponseForbidden,
+    HttpResponseForbidden, HttpResponseNotFound,
 )
 from .models import Post, Tag, PostTag
 from .forms import TilForm
@@ -13,7 +13,7 @@ from django.contrib.auth import login, authenticate
 
 def index(request):
     if not request.user.is_authenticated:
-        latest_posts = Post.objects.filter(visibility=True).order_by('-post_date')[:5]
+        latest_posts = Post.objects.filter(public=True).order_by('-post_date')[:5]
         return render(
             request, 'tilweb/index.html', {
                 'posts': latest_posts
@@ -24,10 +24,15 @@ def index(request):
 
 def me(request):
     if request.user.is_authenticated:
-        latest_posts = Post.objects.order_by('-post_date')[:5]
+        latest_posts = Post.objects.order_by('-post_date')
+        post_tags = PostTag.objects.filter(
+            post__in=[p for p in latest_posts]
+        ).distinct()
         return render(
             request, 'tilweb/me.html', {
-                'posts': latest_posts
+                'user': request.user,
+                'posts': latest_posts,
+                'tags': set([tag.tag for tag in post_tags]),
             })
     else:
         return HttpResponseRedirect('/login/')
@@ -96,18 +101,20 @@ def create_post(request):
                 subject=form.cleaned_data.get('subject'),
                 content=form.cleaned_data.get('content'),
                 author=request.user,
-                visibility=form.cleaned_data.get('visibility'),
+                public=form.cleaned_data.get('public'),
             )
             p.save()
             tags = form.cleaned_data.get('tags')
-            print(tags)
             if tags:
                 tags_list = tags.split(',')
                 for tag in tags_list:
+                    tag = tag.strip()
                     t = Tag.objects.filter(tag=tag)
                     if not t:
                         t = Tag(tag=tag)
                         t.save()
+                    else:
+                        t = t[0]
                     pt = PostTag(post=p, tag=t)
                     pt.save()
 
@@ -124,7 +131,7 @@ def create_post(request):
 def show_post(request, post_id=None):
     post = Post.objects.filter(id=post_id)[0]
     # if the post is not public, only viewable by the author
-    if not post.visibility:
+    if not post.public:
         if not post.author == request.user:
             return HttpResponseForbidden()
     post_tags = PostTag.objects.filter(post=post)
@@ -132,3 +139,23 @@ def show_post(request, post_id=None):
         'post': post,
         'tags': post_tags if len(post_tags) else None,
     })
+
+
+def tag_view(request, tag):
+    t = Tag.objects.filter(tag=tag)
+    if t.all():
+        t = t[0]
+        posts = PostTag.objects.filter(tag=t)
+        # Query all the public posts or the posts by
+        # the currently logged in user with the
+        # given tag
+        posts = Post.objects.filter(id__in=[
+            p.post.id for p in posts if p.post.public or
+            p.post.author == request.user]
+        )
+        return render(request, 'tilweb/tag_view.html', {
+            'tag': t.tag,
+            'posts': posts,
+        })
+    else:
+        return HttpResponseNotFound('<h1> Tag Not Found </h1>')
