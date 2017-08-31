@@ -17,5 +17,5 @@ class Tag(models.Model):
 
 
 class PostTag(models.Model):
-    post_id = models.ForeignKey(Post)
-    tag_id = models.ForeignKey(Tag)
+    post = models.ForeignKey(Post)
+    tag = models.ForeignKey(Tag)

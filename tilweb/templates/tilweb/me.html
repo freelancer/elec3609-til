@@ -1,0 +1,22 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<div class="container"
+  <div class="jumbotron">
+    <h1>Create your post</h1> 
+    <p>TIL: Your personal learning journal</p>
+    </div>
+</div>
+
+<div class="container" style="width:40%">
+<p><a href="/post/">Create a new post</a></p>
+<h3>Your recent posts</h3> 
+{% for post in posts %}
+<p><a href="/post/{{post.id}}/">{{ post.subject }}</a></p>
+{%endfor %}
+
+
