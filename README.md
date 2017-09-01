@@ -26,6 +26,7 @@ Go to `127.0.0.1:8000`
 
 I used these for help:
 
+- https://docs.djangoproject.com/en/1.11/ref/csrf/
 - http://www.janosgyerik.com/django-authenticationform-gotchas/
 - https://django-bootstrap3.readthedocs.io/en/latest/quickstart.html#example-template
 - https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html
