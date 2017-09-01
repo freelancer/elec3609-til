@@ -1,10 +1,5 @@
-{# Load the tag library #}
-{% load bootstrap3 %}
-
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
+{% extends 'tilweb/base.html' %}
+{% block content %}
 <div class="container">
   <div class="jumbotron">
  
@@ -35,3 +30,4 @@
     <button type="submit">Login</button>
   </form>
 </div>
+{% endblock %}

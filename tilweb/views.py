@@ -8,7 +8,7 @@ from .forms import TilForm
 
 
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 
 
 def index(request):
@@ -61,6 +61,10 @@ def login_view(request):
             # errors
             return render(request, 'tilweb/login.html', {'form': form})
 
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
 
 def signup(request):
     if request.user.is_authenticated:
