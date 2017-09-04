@@ -36,4 +36,6 @@ I used these for help:
 ## Web application Resources
 
 - [A typical HTTP session](https://developer.mozilla.org/en-US/docs/Web/HTTP/Session)
+- [HTTP Cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
+- [HTTP Compression](https://developer.mozilla.org/en-US/docs/Web/HTTP/Compression)
 
