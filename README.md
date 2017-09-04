@@ -22,7 +22,7 @@ $ python manage.py runserver 0.0.0.0:8000
 
 Go to `127.0.0.1:8000`
 
-### Resources
+### Django Resources
 
 I used these for help:
 
@@ -31,3 +31,9 @@ I used these for help:
 - https://django-bootstrap3.readthedocs.io/en/latest/quickstart.html#example-template
 - https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html
 - https://stackoverflow.com/questions/14647723/django-forms-if-not-valid-show-form-with-error-message
+
+
+## Web application Resources
+
+- [A typical HTTP session](https://developer.mozilla.org/en-US/docs/Web/HTTP/Session)
+
