@@ -1,8 +1,13 @@
-## Today I Learned - Demo application
+## Today I Learned - Demo application (Amit Saha)
 
 
 Download the source code by using git:
 
+```
+git clone https://github.com/freelancer/til.git
+```
+
+Original can be found at:
 ```
 git clone https://github.com/amitsaha/til.git
 ```
